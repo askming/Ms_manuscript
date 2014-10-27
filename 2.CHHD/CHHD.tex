@@ -28,11 +28,10 @@
 \def\articleType{Research Article}
 \def\keyFont{\fontsize{8}{11}\helveticabold }
 \def\firstAuthorLast{Ming Yang {et~al.}} %use et al only if is more than 1 author
-\def\Authors{Ming Yang\,$^{1}$, Dejian Lai\,$^{1,*}$ and Kim Waller\,$^2$}
+\def\Authors{Ming Yang\,$^{1}$, Dejian Lai\,$^{1,*}$}
 % Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
 % If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
-\def\Address{$^{1}$Department of Biostatistics, School of Public Health, the University of Texas Health Science Center at Houston, Houston, TX, USA \\
-$^{2}$Division of Epidemiology, Human Genetics \& Environmental Sciences, School of Public Health, the University of Texas Health Science Center at Houston, Houston, TX, USA  }
+\def\Address{$^{1}$Department of Biostatistics, School of Public Health, the University of Texas Health Science Center at Houston, Houston, TX, USA }
 % The Corresponding Author should be marked with an asterisk
 % Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
 \def\corrAuthor{Dejian Lai}
@@ -113,7 +112,7 @@ In this study we used countries as the study units \cite{Carl}. For each of the 
 
 \subsection{Data}%%%%%%%
 \label{sec:data}
-Our data set includes annual infant mortality rate for 195 countries/regions around the world between the times of May 1932 to May 2010. The data set is mainly collected from the Child Mortality Estimates (CME)\footnote{CME Info is a database containing the latest child mortality estimates based on the research of the UN Inter-agency Group for Child Mortality Estimation.}  website: http://www.childmortality.org \cite{CME}, compiled with those from the World Bank website \cite{WorldBank}. A closer examination of the data set showed that for most of the countries/regions, the data were mostly missing before 1950. To deal with this issue, we set the time interval starting from 1950 for our study. Countries with sparse data were not included in the study. Also we took consideration to cover countries from different continents and different level of socioeconomic status in order to investigate the influence of those factors on the trend of the IMR. To make it representative and comprehensive, we selected the countries and regions that are listed in Table 1.
+Our data set includes annual infant mortality rate for 195 countries/regions around the world between the times of May 1932 to May 2010. The data set is mainly collected from the Child Mortality Estimates (CME)\footnote{CME Info is a database containing the latest child mortality estimates based on the research of the UN Inter-agency Group for Child Mortality Estimation.}  website: http://www.childmortality.org \cite{CME}, compiled with those from the World Bank website \cite{WorldBank}. A closer examination of the data set showed that for most of the countries/regions, the data were mostly missing before 1950. To deal with this issue, we set the time interval starting from 1950 for our study. Countries with sparse data were not included in the study. Also we took consideration to cover countries from different continents and different level of socioeconomic status in order to investigate the influence of those factors on the trend of the IMR. To make it representative and comprehensive, we selected the countries and regions that are listed in {\bf Table \ref{Tab:01}}.
 
 \begin{table}[!t]
 \textbf{\refstepcounter{table}\label{Tab:01} Table \arabic{table}.}{ Selected countries for the study }
@@ -285,7 +284,7 @@ Generally, it can be observed from these plots that although the IMR from develo
 To investigate the relationship between IMR and time quantitatively, we implemented the method of regression analysis and built models of IMR in terms of time by estimating the regression coefficient of the model. We first tried simple OLS method without taking into account the autocorrelation to model the IMR time trend, then we built new models that take into account autocorrelation. The results from these two methods were compared. We took the United Stated as an example to conduct the above analyses. The results of the other selected countries were obtained similarly.
 
 \subsection{Fitted Models with OLS Method}
-Without considering the autocorrelation among the observations, first we simply tried to fit the regression model for the IMR data by OLS method. Table 2 (upper) shows the estimations of coefficients using the OLS regression of United States (1950--2010) and \textbf{Figure \ref{fig:02}} (left) shows the IMR trend in time of United States between the years of 1950 to 2010, along with the regression line fitted to the data. The function shows the relationship between IMR and time:
+Without considering the autocorrelation among the observations, first we simply tried to fit the regression model for the IMR data by OLS method. {\bf Table \ref{Tab:02}} (upper) shows the estimations of coefficients using the OLS regression of United States (1950--2010) and \textbf{Figure \ref{fig:02}} (left) shows the IMR trend in time of United States between the years of 1950 to 2010, along with the regression line fitted to the data. The function shows the relationship between IMR and time:
 
 \[IMR=-0.456*year+917.8335,\]
 
@@ -317,7 +316,7 @@ which means that the IMR of United States decreased 0.456 per 1000 per year duri
 
 \subsection{Fitted Models with GLS Method}
 The \verb'R' function \verb'arima' was used to build the time-series regression model. For the data from United States we chose the order (1,0,0), which equals to the first order autoregressive modelâ i.e. AR(1).
-Table 2 (lower) shows the output, and the resulting model is:
+{\bf Table \ref{Tab:02}} (lower) shows the output, and the resulting model is:
 
 \[IMR=-0.427*year+864.2053,\]
 
@@ -461,7 +460,7 @@ The baseline of IMR was much higher in developing countries compared with develo
 From \textbf{Table \ref{Tab:03}}, for example, we can see that the slopes for China and India are significantly different (with difference equals to 0.6751 and {\em p-value} $<$0.0001), which indicates China has smaller IMR decreasing rate than India (in absolute value of the slopes). The same conclusion can be drawn form the comparison between US and China (US has smaller IMR decreasing rate than China). Comparisons can also be done for other countries using similar method. Although high achievement had been made in reducing the IMR in developing countries for the past few decades, attentions, efforts, and resources are still desirable and necessary in the future. For the countries that already have lower IMR, more effective methods need to be considered and applied to lower the IMR further.
 
 \subsection{The difference in two model-building methods}
-Two regression lines were presented in \textbf{Figure \ref{fig:03}} to \textbf{Figure \ref{fig:06}}, graphically showing the comparison between these two model-building methods (solid line stands for OLS regression and dashed line stands for GLS regression). Neither from the numeric values in Table 4 nor from the graphs the results from OLS method are greatly different from those from the GLS method at the first glance -- they have similar absolute values or the two regression lines lie close to each other. Country-wise statistical tests for comparison of the difference in the estimates of slopes also turned out to be insignificant expect for two countries as we can see from \textbf{Table \ref{Tab:05}}: Zambia and Morocco had significant results, which means the regression slopes from OLS and GLS methods are significantly different with each other. For all other countries we failed to reject the null hypothesis and both OLS and GLS methods produced similar estimates of slopes.\\
+Two regression lines were presented in \textbf{Figure \ref{fig:03}} to \textbf{Figure \ref{fig:06}}, graphically showing the comparison between these two model-building methods (solid line stands for OLS regression and dashed line stands for GLS regression). Neither from the numeric values in {\bf Table \ref{Tab:04}} nor from the graphs the results from OLS method are greatly different from those from the GLS method at the first glance -- they have similar absolute values or the two regression lines lie close to each other. Country-wise statistical tests for comparison of the difference in the estimates of slopes also turned out to be insignificant expect for two countries as we can see from \textbf{Table \ref{Tab:05}}: Zambia and Morocco had significant results, which means the regression slopes from OLS and GLS methods are significantly different with each other. For all other countries we failed to reject the null hypothesis and both OLS and GLS methods produced similar estimates of slopes.\\
 
 However the overall two-sample paired {\em t-test} showed that the regression coefficients from the OLS and GLS methods are statistically significantly different from each other with {\em p-value} turned out to be 0.0435, which was slightly less than 0.05, indicated we could reject the null hypothesis, and the slops from OLS and GLS methods were statistically different with a significance level of 5$\%$. In addition, when we take account of the whole population size, this ``small" difference could result in huge discrepancy: for example, the population of US was around 308,745,538  in 2010. If we apply above two methods separately the difference in IMR for the year of 2010 can be calculated as
 
@@ -528,10 +527,10 @@ The authors declare that the research was conducted in the absence of any commer
 %Contributors who meet fewer than all 4 of the above criteria for authorship should not be listed as authors, but they should be acknowledged. (http://www.icmje.org/roles_a.html)
 
 
-This is originally MY's thesis work for his master's of science (MS) degree at the University of Texas School of Public Health. Dr. DL is the chair of the dissertation committee and Dr. KW is another committee member from the epidemiology division. 
+This is originally MY's thesis work for his master's of science (MS) degree at the University of Texas School of Public Health. Dr. DL is the chair of the dissertation committee. 
 
 \section*{Acknowledgement}
-The author, Ming Yang, would like to thank Dr. Dejian Lai for his patient guidance and continuous support during this research project and Dr. Kim Waller for those precious time and advice. The author also would like to express his gratitude to his friends in UTSPH for their accompany and encouragement during his pursuit of the MS degree. 
+The author, Ming Yang, would like to thank Dr. Dejian Lai for his patient guidance and continuous support during this research project. The author also would like to express his gratitude to his friends in UTSPH for their accompany and encouragement during his pursuit of the MS degree. 
 
 \paragraph{Funding\textcolon} This study is not funded.
 
@@ -582,7 +581,7 @@ See Reference items 4 and 7.
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[scale=0.5]{1.overall.pdf}
+  \includegraphics[scale=0.5]{1overall.pdf}
 \end{center}
 %\caption{Time trends of IMR for different development status}
  \textbf{\refstepcounter{figure}\label{fig:01} Figure \arabic{figure}.}{ Time trends of IMR for different development status }
@@ -591,14 +590,14 @@ See Reference items 4 and 7.
 %
 % For two-column wide figures use
 \begin{figure}[H]
-  \includegraphics[width=0.5\textwidth]{2.us_ols1.pdf}
-  \includegraphics[width=0.5\textwidth]{3.us_ols2.pdf}
+  \includegraphics[width=0.5\textwidth]{2us_ols1.pdf}
+  \includegraphics[width=0.5\textwidth]{3us_ols2.pdf}
 \textbf{\refstepcounter{figure}\label{fig:02} Figure \arabic{figure}.}{ Regression line of IMR v.s. time from OLS (left) \& GLS (right) models, United States (1950--2010) }
 \end{figure}
 
 \begin{figure}[H]
 \begin{center}
-  \includegraphics[scale=0.7]{4.afarica.pdf}
+  \includegraphics[scale=0.7]{4afarica.pdf}
 \end{center}
 \textbf{\refstepcounter{figure}\label{fig:03} Figure \arabic{figure}.}{ IMR time trends for African countries: Algeria, Sudan, Zambia, Morocco, and Libya }       
 \end{figure}
@@ -606,7 +605,7 @@ See Reference items 4 and 7.
 
 \begin{figure}[H]
 \begin{center}
-  \includegraphics[scale=0.7]{5.asia.pdf}
+  \includegraphics[scale=0.7]{5asia.pdf}
 \end{center}
 \textbf{\refstepcounter{figure}\label{fig:04} Figure \arabic{figure}.}{ IMR time trends for Asian countries: China, Japan, India, Singapore, and Thailand }       
 \end{figure}
@@ -614,14 +613,14 @@ See Reference items 4 and 7.
 
 \begin{figure}[H]
 \begin{center}
-  \includegraphics[scale=0.7]{6.europ.pdf}
+  \includegraphics[scale=0.7]{6europ.pdf}
 \end{center}
 \textbf{\refstepcounter{figure}\label{fig:05} Figure \arabic{figure}.}{ IMR time trends for European countries: Poland, Sweden, Italy, France, UK, and Russia }       
 \end{figure}
 
 \begin{figure}[H]
 \begin{center}
-  \includegraphics[scale=0.7]{7.america.pdf}
+  \includegraphics[scale=0.7]{7america.pdf}
 \end{center}
 \textbf{\refstepcounter{figure}\label{fig:06} Figure \arabic{figure}.}{ IMR time trends for American and Oceanian countries: US, Brazil, Mexico, and Australia }       
 \end{figure}
